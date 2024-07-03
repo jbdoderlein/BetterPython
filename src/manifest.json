@@ -1,0 +1,17 @@
+{
+  "short_name": "BetterOCaml",
+  "name": "BetterOCaml, offline OCaml IDE",
+  "icons": [
+    {
+      "src": "icon/android-icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#263238",
+  "display": "standalone",
+  "scope": "/index.html",
+  "theme_color": "#263238",
+  "description": "A small but efficient, intuitive and responsive OCaml IDE right in your browser! Ships OCaml v5.1.1, interpreter by your browser (so it works offline!), compiled with js_of_ocaml. Open-source on <a href='https://github.com/jbdoderlein/BetterOCaml'>GitHub.com/jbdoderlein/BetterOCaml</a>"
+}

@@ -1,0 +1,58 @@
+/* Monokai theme */
+:root {
+    /* Editor color */
+    --ui-text-color:white;
+    --resizer-bg-color:#505050;
+    --toplevel-bg-color: #272822;
+    /* Help*/
+    --help-bg-color: #21221d;
+    --help-margin-color: #21221d;
+    /* Nav */
+    --nav-bg-color: #21221d;
+    --nav-unselected-tab-bg-color: #191a16;
+    --nav-unselected-tab-text-color: #9f9f9f;
+    --nav-selected-tab-bg-color: #272822;
+    --nav-selected-tab-text-color: white;
+    --nav-close-btn-bg-color:#3a3b35;
+    /* Editor */
+    --editor-bg-color: #272822;
+    --editor-gutter-bg-color:#21221d;
+    --editor-gutter-text-color:#d0d0d0;
+    --editor-cursor-color: #f8f8f0;
+    --editor-selection-bg-color: rgba(73, 72, 62, .99);
+    --editor-code-highlight-color: #4f4e44;
+    /* Scrollbar */
+    --scrollbar-bg-color: #21221d;
+    --scrollbar-track-color: #2a2b25;
+    /* Preloader */
+    --preloader-bg-color: #21221d;
+    --preloader-progress-bar-color: white;
+    /* Form */
+    --form-dropdown-bg-color: #21221d;
+    --form-dropdown-text-color: white;
+    --form-switch-border-color: #515348;
+    --form-button-bg-color:#454646;
+    --action-button: #21221d;
+
+    /* Code color */
+    --code-text-color: white;
+    --code-caml:rgb(110, 110, 201);
+    --code-error:#d9534f;
+    --code-string:#e6db74;
+    --code-number:#ae81ff;
+    --code-constant:#66d9ef;
+    --code-keyword:#f92672;
+    --code-operator:#89ddff;
+    --code-variable:#f8f8f2;
+    --code-builtin:#66d9ef;
+    --code-atom:#ae81ff;
+    --code-def:#fd971f;
+    --code-comment:#546e7a;
+    --code-brackets:#f8f8f2;
+    --code-escape:#409290;
+    --code-symbol:#f8f8f2;
+    --code-tag:#bc6283;
+    --code-meta:#ffcb6b;
+    --code-attribute:#a6e22e;
+    --code-qualifier: #decb6b;
+}

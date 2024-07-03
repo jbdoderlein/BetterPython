@@ -1,0 +1,59 @@
+/* Pycharm like theme */
+:root {
+    /* Editor color */
+    --ui-text-color:white;
+    --resizer-bg-color:#505050;
+    --toplevel-bg-color: #3c3f41;
+    /* Help*/
+    --help-bg-color: #3c3f41;
+    --help-margin-color: #2b2b2b;
+    /* Nav */
+    --nav-bg-color: #3c3f41;
+    --nav-unselected-tab-bg-color: #303030;
+    --nav-unselected-tab-text-color: #9f9f9f;
+    --nav-selected-tab-bg-color: #2b2b2b;
+    --nav-selected-tab-text-color: white;
+    --nav-close-btn-bg-color:#3c3f41;
+    /* Editor */
+    --editor-bg-color: #2b2b2b;
+    --editor-gutter-bg-color:#2b2b2b;
+    --editor-gutter-text-color:#808080;
+    --editor-cursor-color: #fc0;
+    --editor-selection-bg-color: rgba(33, 66, 131, 1);
+    --editor-code-highlight-color: rgba(66, 132, 255, .1);
+    /* Scrollbar */
+    --scrollbar-bg-color: #2b2b2b;
+    --scrollbar-track-color: #303030;
+    /* Preloader */
+    --preloader-bg-color: #263238;
+    --preloader-progress-bar-color: whitesmoke;
+    /* Form */
+    --form-dropdown-bg-color: #2b2b2b;
+    --form-dropdown-text-color: white;
+    --form-switch-border-color: 808080;
+    --form-button-bg-color:#454646;
+    --action-button: #3c3f41;
+
+    /* Code color */
+    --code-text-color: white;
+    --code-caml:rgb(110, 110, 201);
+    --code-error:#ff5370;
+    --code-string:#629755;
+    --code-number:#6897bb;
+    --code-constant:#ffcb6b;
+    --code-keyword:#cc7832;
+    --code-operator:#a9b7c6;
+    --code-variable:#a9b7c6;
+    --code-builtin:#ffc66d;
+    --code-atom:#f78c6c;
+    --code-def:#82aaff;
+    --code-comment:#808080;
+    --code-brackets:#fff;
+    --code-escape:#409290;
+    --code-symbol:#94558D;
+    --code-tag:#ff5370;
+    --code-meta:#ffcb6b;
+    --code-attribute:#cc7832;
+    --code-qualifier: #8888C6;
+
+}
