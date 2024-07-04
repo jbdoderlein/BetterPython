@@ -331,6 +331,7 @@
         r.style.setProperty('--toplevel-font-size', (localStorage.getItem("betterocaml-text-toplevel") || "1.2em"));
 
         // Service Worker
+        /*
         if ('serviceWorker' in navigator) {
             try {
                 navigator.serviceWorker.register('serviceWorker.js');
@@ -338,7 +339,7 @@
             } catch (error) {
                 console.log("Service Worker Registration Failed");
             }
-        }
+        }*/
 
         // Init navbar size
         navbar_resize()
