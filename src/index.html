@@ -6,6 +6,7 @@
           content="An efficient, intuitive and cross-platform web IDE for the Python language (recent: v3.7), with your code interpreted and running in your browser! (no server is needed!)">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./mini-coi.js" scope="./"></script>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" sizes="57x57" href="icon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="icon/apple-icon-60x60.png">
@@ -106,7 +107,7 @@
 <!-- Clean console button -->
 <div class="fixed-action-btn hide-on-small-and-down" style="bottom: 15px; right: 15px;">
     <a class="btn-floating btn-small waves-effect waves-light zoom-button"
-       onclick="toplevelcallback.clear()"><i
+       onclick="terminal.terminal.clear()"><i
             class="material-icons">delete</i></a>
 </div>
 
@@ -115,7 +116,7 @@
     <a class="btn-floating btn-small waves-effect waves-light zoom-button" onclick="exec_all(editors[current_editor()])"><i
             class="material-icons">play_arrow</i></a>
     <a class="btn-floating btn-small waves-effect waves-light zoom-button"
-       onclick="toplevelcallback.clear()"><i
+       onclick="terminal.terminal.clear()"><i
             class="material-icons">delete</i></a>
 </div>
 
@@ -174,7 +175,7 @@
                         class="material-icons">remove</i></a>
             </div>
 
-            <a class="waves-effect waves-light btn config-element" onclick="toplevelcallback.reset()"><i
+            <a class="waves-effect waves-light btn config-element" onclick="terminal.terminal.clear()"><i
                     class="material-icons right">refresh</i>Reset
                 OCaml Interpreter</a>
         </div>
@@ -289,9 +290,13 @@
     <div id="box_2" class="box console-box">
         <div id="emtopx" style="font-size: var(--toplevel-font-size);display: none;"></div>
         <div id="toplevel-container">
-            <script id="toplevel-terminal" type="mpy" terminal>
+            <mpy-config>
+                interpreter = "js/micropython/micropython.mjs"
+            </mpy-config>            
+            <script id="toplevel-terminal" type="mpy" terminal worker>
                 import code
                 from pyscript import window
+
                 window.change_font_size("toplevel",0)
                 code.interact()
             </script>
@@ -416,6 +421,7 @@
             (for_statement)@bloc
             (while_statement)@bloc
             (try_statement)@bloc
+            (import_statement)@expr
             (expression_statement)@expr`);
         });
     });
