@@ -93,7 +93,7 @@ let exec_all = function (instance) {
         }
         terminal.process(code);
     })
-    terminal.process(instance.getValue());
+    //terminal.process(instance.getValue());
     autoscroll_output();
 };
 
