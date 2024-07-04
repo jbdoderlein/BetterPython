@@ -8,5 +8,13 @@ WIP : A small but efficient, intuitive and responsive Python IDE right in your b
 - Change XtermJS look to better match BetterEditor design
 - Make script to build from the sources the libs in the repo
 - Update PWA settings
-- Make CI/CD to publish on github pages
 - Clean up JS to remove every useless functions
+
+## Use of Web Worker / Python Interpreter
+We now use Micro Python but we could use original python interpreter if the toplevel was in a web worker.
+To accept the toplevel in web worker, we would need these headers :
+```
+Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Embedder-Policy: require-corp
+```
+But this is not possible on github pages.
