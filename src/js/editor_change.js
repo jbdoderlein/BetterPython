@@ -49,7 +49,7 @@ let clean_content = function (content) {
  * Auto scroll down output interpreter
  */
 function autoscroll_output() {
-    let container = document.getElementById("toplevel-container");
+    let container = document.getElementsByClassName("xterm-viewport")[0];
     container.scrollTop = container.scrollHeight;
 }
 
