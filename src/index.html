@@ -63,7 +63,7 @@
         </ul>
         <ul id="menu-button" class="right">
             <li id="flexible-mobile-button">
-                <a onclick="editors[Math.max(...Object.keys(editors).map(x => +x))+1] = create_editor(id = Math.max(...Object.keys(editors).map(x => +x))+1, name = 'untitled.ml', theme= editors[Math.min(...Object.keys(editors).map(x => +x))].getOption('theme'));"><i
+                <a onclick="editors[Math.max(...Object.keys(editors).map(x => +x))+1] = create_editor(id = Math.max(...Object.keys(editors).map(x => +x))+1, name = 'untitled.py', theme= editors[Math.min(...Object.keys(editors).map(x => +x))].getOption('theme'));"><i
                         class="material-icons">add</i></a></li>
             <li><a onclick="exec_all(editors[current_editor()])"><i class="material-icons">play_arrow</i></a></li>
             <li><a onclick="save(editors[current_editor()]);"><i class="material-icons">save</i></a></li>
@@ -83,7 +83,7 @@
 <!-- Mobile Sidenav -->
 <ul id="mobile-sidenav" class="sidenav mobile-tabs tabs">
     <li id="add_tab" class="tab col s3 onglet">
-        <a onclick="editors[Math.max(...Object.keys(editors).map(x => +x))+1] = create_editor(id = Math.max(...Object.keys(editors).map(x => +x))+1, name = 'untitled.ml', theme= editors[Math.min(...Object.keys(editors).map(x => +x))].getOption('theme'));">
+        <a onclick="editors[Math.max(...Object.keys(editors).map(x => +x))+1] = create_editor(id = Math.max(...Object.keys(editors).map(x => +x))+1, name = 'untitled.py', theme= editors[Math.min(...Object.keys(editors).map(x => +x))].getOption('theme'));">
             Add file
             <i class="material-icons add-icon">add</i>
         </a>
@@ -232,7 +232,7 @@
     <div class="modal-content">
         <h4>Save as ...</h4>
         <div class="input-field col s6">
-            <input placeholder="untitled.ml" id="saveas_text" type="text" class="white-text">
+            <input placeholder="untitled.py" id="saveas_text" type="text" class="white-text">
         </div>
     </div>
     <div class="modal-footer help">
@@ -270,9 +270,6 @@
         <div id="toplevel-container">
             <mpy-config>
                 interpreter = "js/micropython/micropython.mjs"
-                [js_modules.main]
-                "https://cdn.jsdelivr.net/npm/@xterm/addon-web-links/+esm" = "weblinks"
-                "https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10.0/+esm" = "fit"
             </mpy-config> 
             <script id="toplevel-terminal" type="mpy" terminal worker name="toplevel">
                 import code

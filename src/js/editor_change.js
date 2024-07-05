@@ -155,7 +155,7 @@ let calculate_highlight = function (instance) {
  * @return {void} Nothing
  */
 function save(instance) {
-    if (instance.name == "untitled.ml") {
+    if (instance.name == "untitled.py") {
         M.Modal.getInstance(document.getElementById('saveas')).open()
     } else {
         program_save(instance);
@@ -169,12 +169,12 @@ function save(instance) {
  */
 function name_and_save(instance) {
     let potential_filename = document.getElementById('saveas_text').value;
-    let fileNameToSaveAs = "untitled.ml";
+    let fileNameToSaveAs = "untitled.py";
     if (potential_filename !== "") {
-        if (potential_filename.substr(-3, 3) == ".ml") {
+        if (potential_filename.substr(-3, 3) == ".py") {
             fileNameToSaveAs = potential_filename
         } else {
-            fileNameToSaveAs = potential_filename + ".ml"
+            fileNameToSaveAs = potential_filename + ".py"
         }
     }
     instance.name = fileNameToSaveAs;
@@ -593,7 +593,7 @@ function navbar_resize() {
         let mobile_button = document.getElementById("flexible-mobile-button");
         mobile_button.children[0].children[0].innerText = "add";
         mobile_button.children[0].removeAttribute("href");
-        mobile_button.children[0].setAttribute("onclick", "editors[Math.max(...Object.keys(editors).map(x => +x))+1] = create_editor(id = Math.max(...Object.keys(editors).map(x => +x))+1, name = 'untitled.ml', theme= editors[Math.min(...Object.keys(editors).map(x => +x))].getOption('theme'));");
+        mobile_button.children[0].setAttribute("onclick", "editors[Math.max(...Object.keys(editors).map(x => +x))+1] = create_editor(id = Math.max(...Object.keys(editors).map(x => +x))+1, name = 'untitled.py', theme= editors[Math.min(...Object.keys(editors).map(x => +x))].getOption('theme'));");
         mobile_button.children[0].removeAttribute("data-target");
         mobile_button.children[0].removeAttribute("class");
         // transfer tabs to navbar

@@ -5,7 +5,6 @@ const staticAssets = [
     // './',
     './manifest.json',
     './index.html',
-    './favicon.ico'
 ];
 
 
@@ -19,25 +18,23 @@ const staticAssets = [
     }
     else {
       addEventListener('install', async event => {
-        skipWaiting();
         const cache = await caches.open('static-cache');
         cache.addAll(staticAssets);
+        skipWaiting();
         });
       addEventListener('activate', e => e.waitUntil(clients.claim()));
-      addEventListener('fetch', e => {
-        const req = e.request;
-        const url = new URL(req.url);
+      addEventListener('fetch', async e => {
         const { request: r } = e;
+        const url = new URL(r.url);
         let cached_req;
-        /*
         if(url.origin === location.url){
-            cached_req = cacheFirst(req);
-        } else {
-            cached_req = newtorkFirst(req);
+          cached_req = caches.match(r) || fetch(r);
         }
-        */
+        else {
+          cached_req = newtorkFirst(r);
+        }
         if (r.cache === 'only-if-cached' && r.mode !== 'same-origin') return;
-        e.respondWith(fetch(r).then(r => {
+        e.respondWith(cached_req.then(r => {
           const { body, status, statusText } = r;
           if (!status || status > 399) return r;
           const h = new Headers(r.headers);
@@ -50,20 +47,10 @@ const staticAssets = [
     }
   })(self);
 
-async function cacheFirst(req){
-    const cachedResponse = caches.match(req);
-    return cachedResponse || fetch(req);
-}
-
-async function newtorkFirst(req){
-    const cache = await caches.open('dynamic-cache');
-
-    try {
-        const res = await fetch(req);
-        cache.put(req, res.clone());
-        return res;
-    } catch (error) {
-        return await cache.match(req);
-    }
+async function newtorkFirst(r){
+  const cache = await caches.open('dynamic-cache');
+  const res = await fetch(r);
+  cache.put(r, res.clone());
+  return res;
 }
   
