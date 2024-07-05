@@ -8,21 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./mini-coi.js" scope="./"></script>
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" sizes="57x57" href="icon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="icon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="icon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="icon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="icon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="icon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="icon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="icon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="icon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="icon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="48x48" href="icon/icon-48x48.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icon/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="36x36" href="icon/icon-36x36.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icon/icon-96x96.png">
     <meta name="msapplication-TileColor" content="#263238">
-    <meta name="msapplication-TileImage" content="icon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="icon/icon-144x144.png">
     <meta name="theme-color" content="#263238">
     <link href="css/icon.css" rel="stylesheet">
     <link rel="stylesheet" id="css_theme" href="css/theme/material.css">
@@ -31,6 +23,7 @@
     <link rel="stylesheet" href="css/codemirror/dialog.css"/>
     <link rel="stylesheet" href="css/codemirror/show-hint.css"/>
     <link rel="stylesheet" href="css/index.css"> 
+    <link rel="stylesheet" href="js/pyscript/core.css"/>
     <script src="js/codemirror/codemirror.js"></script>
     <script src="js/codemirror/matchbrackets.min.js"></script>
     <script src="js/codemirror/closebrackets.js"></script>
@@ -46,21 +39,14 @@
     <script async defer src="js/buttons.js"></script>
 
     <script src="js/tree-sitter/tree-sitter.js"></script>
-
-    <link
-        rel="stylesheet"
-        href="js/pyscript/core.css"
-    />
-    <script
-        type="module"
-        src="js/pyscript/core.js"
-    ></script>
+    <script type="module" src="js/pyscript/core.js"></script>
+    <script src="js/pyscript/addon-fit.js"></script>
 </head>
 
 <!-- Loading screen -->
 <div id="loader-wrapper">
     <div id="loader" class="container">
-        <img alt="Betterocaml Splash" src="icon/banner.png">
+        <img alt="Betterpython Splash" src="icon/banner.png">
         <h2 class="center white-text">Loading Python Interpreter</h2>
         <p class="center white-text">BetterPython will be ready in a few seconds ...</p>
         <div class="progress">
@@ -174,22 +160,16 @@
                    onclick="change_font_size('toplevel', -0.1)"><i
                         class="material-icons">remove</i></a>
             </div>
-
-            <a class="waves-effect waves-light btn config-element" onclick="terminal.terminal.clear()"><i
-                    class="material-icons right">refresh</i>Reset
-                OCaml Interpreter</a>
         </div>
         <h4>Help</h4>
         <a href="#shortcut" class="waves-effect waves-light btn shortcut-button modal-trigger"><i
                 class="material-icons right">code</i>Shortcuts</a>
-        <a href="#graphics" class="waves-effect waves-light btn shortcut-button modal-trigger"><i
-                    class="material-icons right">code</i>Graphics</a>
         <div class="help-section">
-            <a class="github-button" href="https://github.com/jbdo99/betterocaml" data-size="large"
-               aria-label="Issue jbdo99/betterocaml on GitHub">Open in Github</a>
-            <a class="github-button" href="https://github.com/jbdo99/betterocaml/issues"
+            <a class="github-button" href="https://github.com/jbdoderlein/BetterPython" data-size="large"
+               aria-label="Issue jbdoderlein/BetterPython on GitHub">Open in Github</a>
+            <a class="github-button" href="https://github.com/jbdoderlein/BetterPython/issues"
                data-icon="octicon-issue-opened"
-               data-size="large" aria-label="Issue jbdo99/betterocaml on GitHub">Issue</a>
+               data-size="large" aria-label="Issue jbdoderlein/BetterPython on GitHub">Issue</a>
         </div>
     </div>
     <div class="modal-footer help">
@@ -215,9 +195,7 @@
         </div>
         <h5>Toplevel</h5>
         <div class="help-section">
-            <blockquote class="commands">
-                <div class="shortcut-command ctrl"> + K </div> : Reset OCaml Toplevel
-            </blockquote>
+            
         </div>
         <h5>Search / Replace</h5>
         <div class="help-section">
@@ -292,14 +270,17 @@
         <div id="toplevel-container">
             <mpy-config>
                 interpreter = "js/micropython/micropython.mjs"
-            </mpy-config>            
-            <script id="toplevel-terminal" type="mpy" terminal worker>
+                [js_modules.main]
+                "https://cdn.jsdelivr.net/npm/@xterm/addon-web-links/+esm" = "weblinks"
+                "https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10.0/+esm" = "fit"
+            </mpy-config> 
+            <script id="toplevel-terminal" type="mpy" terminal worker name="toplevel">
                 import code
                 from pyscript import window
-
                 window.change_font_size("toplevel",0)
                 code.interact()
             </script>
+            
         </div>
     </div>
 
@@ -315,6 +296,8 @@
     editors = {}
     editors[0] = create_editor(id = 0, name = 'untitled.py');
 
+    let terminalFitter = new FitAddon.FitAddon(); 
+
     // Screen load
     window.addEventListener("load", function () {
         //Load the correct css theme
@@ -322,7 +305,9 @@
         document.getElementById('css_theme').href = href.replace(/[^\/]+$/g, '') + (localStorage.getItem("betterocaml-theme") || "material") + ".css"
 
         // Create the resize bar
-        resize_bar = new Resizer(document.querySelector('[name=resizerH1]'), 'H');
+        resize_bar = new Resizer(document.querySelector('[name=resizerH1]'), 'H',{
+            callbackStop: () => {terminalFitter.fit();}
+        });
         change_resize_bar(resize_bar, (localStorage.getItem("betterocaml-resize-bar") || "H"));
 
         // Set text zoom
@@ -330,31 +315,27 @@
         r.style.setProperty('--editor-font-size', (localStorage.getItem("betterocaml-text-editor") || "1.2em"));
         r.style.setProperty('--toplevel-font-size', (localStorage.getItem("betterocaml-text-toplevel") || "1.2em"));
 
-        // Service Worker
-        /*
-        if ('serviceWorker' in navigator) {
-            try {
-                navigator.serviceWorker.register('serviceWorker.js');
-                console.log("Service Worker Registered");
-            } catch (error) {
-                console.log("Service Worker Registration Failed");
-            }
-        }*/
 
         // Init navbar size
         navbar_resize()
     }, false);
 
     // Loading Animation
-    $('body').on('DOMNodeInserted', 'py-terminal', function () {
+
+    
+    
+    addEventListener("mpy:ready", () => {
+        // show running for an instance
         $('#loader-wrapper').addClass("tester")
+        terminal.terminal.loadAddon(terminalFitter);
+        terminalFitter.fit();
     });
     document.getElementById("loader-wrapper").addEventListener("animationend", (ev) => {
         if (ev.type === "animationend") {
             document.getElementById("loader-wrapper").style.display = "none";
             $('body').off('DOMNodeInserted');
             if (autosave_number() > 0) {
-                if (confirm("Des documents ont été sauvegardé automatiquement lors de la dernière session, voulez vous les restaurer ?")) {
+                if (confirm("Des documents ont été sauvegardés automatiquement lors de la dernière session, voulez vous les restaurer ?")) {
                     restore_editors();
                     remove_editor(0);
                 }

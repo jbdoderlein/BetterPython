@@ -490,6 +490,9 @@ function change_resize_bar(resize_obj, type) {
         document.getElementsByClassName("horizontal")[0].style.flexDirection = "column";
     }
     localStorage.setItem("betterocaml-resize-bar", type);
+    if(terminalFitter){
+        terminalFitter.fit();
+    }
 }
 
 /**

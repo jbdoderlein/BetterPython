@@ -1,9 +1,9 @@
 {
-  "short_name": "BetterOCaml",
-  "name": "BetterOCaml, offline OCaml IDE",
+  "short_name": "BetterPython",
+  "name": "BetterPython, offline Python IDE",
   "icons": [
     {
-      "src": "icon/android-icon-192x192.png",
+      "src": "icon/icon-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     }
@@ -13,5 +13,5 @@
   "display": "standalone",
   "scope": "/index.html",
   "theme_color": "#263238",
-  "description": "A small but efficient, intuitive and responsive OCaml IDE right in your browser! Ships OCaml v5.1.1, interpreter by your browser (so it works offline!), compiled with js_of_ocaml. Open-source on <a href='https://github.com/jbdoderlein/BetterOCaml'>GitHub.com/jbdoderlein/BetterOCaml</a>"
+  "description": "A small but efficient, intuitive and responsive Python IDE right in your browser! Interpreter by your browser (so it works offline!), compiled with pyscript. Open-source on <a href='https://github.com/jbdoderlein/BetterPython'>GitHub.com/jbdoderlein/BetterPython</a>"
 }
