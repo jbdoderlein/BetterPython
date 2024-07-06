@@ -21,9 +21,8 @@ var MOBILE = false;
  * @return {void} Nothing
  */
 function change_font_size(type, change) {
-
     let r = document.querySelector(':root')
-    let value = parseFloat(r.style.getPropertyValue('--' + type + "-font-size").slice(0, -2)) + change;
+    let value = parseFloat(r?.style?.getPropertyValue('--' + type + "-font-size").slice(0, -2)) + change;
     r.style.setProperty('--' + type + '-font-size', value + "em");
     if (type == 'editor') { // If editor, need to change the hint font size
         r.style.setProperty('--hint-font-size', (value * 0.8) + "em");
@@ -78,21 +77,7 @@ let exec_last = function (instance) {
  */
 let exec_all = function (instance) {
     autosave_editor(instance.id);
-    let intervalles = calculate_interval(instance);
-    intervalles.forEach((intervalle) => {
-        let code = instance.getRange({
-            line: intervalle.start.row,
-            ch: intervalle.start.column
-        }, {
-            line: intervalle.end.row,
-            ch: intervalle.end.column
-        });
-
-        if (!(intervalle.type=="expr")) {
-            code += '\n';
-        }
-        terminal.process(code);
-    })
+    terminal.process("_execute_current()");
     //terminal.process(instance.getValue());
     autoscroll_output();
 };

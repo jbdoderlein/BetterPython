@@ -271,10 +271,17 @@
             <mpy-config>
                 interpreter = "js/micropython/micropython.mjs"
             </mpy-config> 
-            <script id="toplevel-terminal" type="mpy" terminal worker name="toplevel">
+            
+            <script id="toplevel-terminal" type="mpy" terminal worker name="toplevel" env="main">
                 import code
+                import asyncio
+                # Import pyscript event handler to create file in filesystem
                 from pyscript import window
-                window.change_font_size("toplevel",0)
+                def _execute_current():
+                    current = int(window.current_editor())
+                    value = window.editors[current].getValue()
+                    exec(value)
+
                 code.interact()
             </script>
             
@@ -326,6 +333,7 @@
         $('#loader-wrapper').addClass("tester")
         terminal.terminal.loadAddon(terminalFitter);
         terminalFitter.fit();
+        change_font_size("toplevel",0);
     });
     document.getElementById("loader-wrapper").addEventListener("animationend", (ev) => {
         if (ev.type === "animationend") {

@@ -588,6 +588,7 @@ label {
     color: var(--text-color);
     overflow: auto;
     overflow-x: hidden;
+    overflow-y: hidden;
     font-family: monospace, monospace;
 }
 
