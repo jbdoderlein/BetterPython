@@ -67,6 +67,7 @@ let exec_last = function (instance) {
             code += '\n';
         }
         terminal.process(code);
+        autoscroll_output();
     }
 };
 
