@@ -48,6 +48,9 @@ let clean_content = function (content) {
  * Auto scroll down output interpreter
  */
 function autoscroll_output() {
+    if(terminalFitter){
+        terminalFitter.fit();
+    }
     let container = document.getElementsByClassName("xterm-viewport")[0];
     container.scrollTop = container.scrollHeight;
 }
