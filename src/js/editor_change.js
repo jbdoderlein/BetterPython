@@ -86,6 +86,43 @@ let exec_all = function (instance) {
     autoscroll_output();
 };
 
+let check_error = function (instance) {
+    if (error_query == undefined) {
+        return;
+    }
+    instance.syntaxErrorMark.forEach(mark => mark.clear());
+    instance.syntaxErrorMark = [];
+    let errors = error_query.matches(parser.parse(instance.getValue()).rootNode);
+    // If a match is found, the error is displayed
+    if (errors.length > 0) {
+        // Clear previous error marks
+        
+        errors.forEach(capture => {
+            capture.captures.forEach(element => {
+                instance.syntaxErrorMark.push(instance.markText({
+                    line: element.node.startPosition.row, 
+                    ch: element.node.startPosition.column 
+                }, 
+                {   
+                    line: element.node.endPosition.row, 
+                    ch: element.node.endPosition.column 
+                }, {className: "syntax-error"}));
+            })
+        });
+        return true;
+    }
+    return false;
+}
+
+let check_error_bloc = function (text) {
+    if (error_query == undefined) {
+        return;
+    }
+    let errors = error_query.matches(parser.parse(text).rootNode);
+    return errors.length > 0;
+}
+    
+
 
 let calculate_interval = function (instance) {
     let intervalles = [];
@@ -370,15 +407,20 @@ function create_editor(id, name) {
                 }
             },
             'Shift-Tab': function (cm) { cm.execCommand('indentLess') },
-        }
+        },
+        hintOptions: {hint: CodeMirror.pythonHint},
     });
     editor.id = id
     editor.name = name
     editor.is_saved = true
+    editor.ext_autocomplete = localStorage.getItem("betterocaml-autocomplete") == "true"
+    editor.autocomplete_timeout = Date.now()
     editor.current_marker = editor.markText({ line: 0 }, { line: 0 }, { css: "color: #fe4" });
+    editor.syntaxErrorMark = [];
     editor.on("cursorActivity", cursor_activity);
     editor.on('drop', editor_drop);
     editor.on("keyup", function (cm, event) {
+        check_error(cm);
         if (cm.ext_autocomplete && // Only trigger if jetbrain style autocompletion is activated
             cm.autocomplete_timeout < Date.now() - 500 && // Only trigger if the user stopped typing
             !cm.state.completionActive && /*Enables keyboard navigation in autocomplete list*/

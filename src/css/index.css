@@ -490,6 +490,9 @@ code, kbd, pre, samp {
     background: var(--editor-selection-bg-color);
 }
 
+.CodeMirror .syntax-error {
+    text-decoration: underline red wavy;
+}
 /* Track */
 
 ::-webkit-scrollbar-track {
