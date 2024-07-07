@@ -109,6 +109,22 @@ let check_error = function (instance) {
                 }, {className: "syntax-error"}));
             })
         });
+
+
+        return true;
+    }
+    let missing_parts = find_missing(instance);
+    if (missing_parts.length > 0) {
+        missing_parts.forEach(missing_part => {
+            instance.syntaxErrorMark.push(instance.markText({
+                line: missing_part.start.row, 
+                ch: missing_part.start.column 
+            }, 
+            {   
+                line: missing_part.end.row, 
+                ch: missing_part.end.column 
+            }, {className: "syntax-error"}));
+        });
         return true;
     }
     return false;
@@ -121,7 +137,46 @@ let check_error_bloc = function (text) {
     let errors = error_query.matches(parser.parse(text).rootNode);
     return errors.length > 0;
 }
-    
+   
+let find_missing = function (instance) {
+    let cursor = parser.parse(instance.getValue()).walk();
+    let make_move = function (cursor, move, fn) {
+        if (move == "down") {
+            fn(cursor);
+            if (cursor.gotoFirstChild()) {
+                make_move(cursor, "down", fn);
+            } else if (cursor.gotoNextSibling()) {
+                make_move(cursor, "right", fn);
+            } else if (cursor.gotoParent()) {
+                make_move(cursor, "up", fn);
+            }
+        } else if (move == "right") {
+            fn(cursor);
+            if (cursor.gotoFirstChild()) {
+                make_move(cursor, "down", fn);
+            } else if (cursor.gotoNextSibling()) {
+                make_move(cursor, "right", fn);
+            } else if (cursor.gotoParent()) {
+                make_move(cursor, "up", fn);
+            }
+        } else if (move == "up") {
+            if (cursor.gotoNextSibling()) {
+                make_move(cursor, "right", fn);
+            } else if (cursor.gotoParent()) {
+                make_move(cursor, "up", fn);
+            }
+        }
+    }
+    let missing = [];
+    make_move(cursor, "down", function (cursor) {
+        if (cursor.currentNode.isMissing) {
+            let start = cursor.currentNode.parent.startPosition;
+            let end = cursor.currentNode.parent.endPosition;
+            missing.push({ start: start, end: end });
+        }
+    });
+    return missing;
+}
 
 
 let calculate_interval = function (instance) {
