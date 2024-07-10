@@ -96,6 +96,9 @@
     <a class="btn-floating btn-small waves-effect waves-light zoom-button"
        onclick="terminal.terminal.clear()"><i
             class="material-icons">delete</i></a>
+    <a class="btn-floating btn-small waves-effect waves-light zoom-button"
+    onclick="restart_toplevel()"><i
+            class="material-icons">refresh</i></a>
 </div>
 
 <!-- Quick execute and clean console on mobile -->
@@ -162,6 +165,9 @@
                         class="material-icons">remove</i></a>
             </div>
         </div>
+        <a class="waves-effect waves-light btn config-element" onclick="restart_toplevel()"><i
+            class="material-icons right">refresh</i>Reset
+        Python Interpreter</a>
         <h4>Help</h4>
         <a href="#shortcut" class="waves-effect waves-light btn shortcut-button modal-trigger"><i
                 class="material-icons right">code</i>Shortcuts</a>
@@ -336,8 +342,11 @@
     
     addEventListener("mpy:ready", () => {
         // show running for an instance
+        console.log("Python interpreter ready")
         $('#loader-wrapper').addClass("tester")
-        terminal.terminal.loadAddon(terminalFitter);
+        // check if the terminal is ready
+        let local_terminal = document.querySelector("#toplevel-terminal");
+        local_terminal.terminal.loadAddon(terminalFitter);
         terminalFitter.fit();
         change_font_size("toplevel",0);
     });

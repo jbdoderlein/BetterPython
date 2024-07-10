@@ -10,7 +10,7 @@ const files = document.getElementById("editor-files");
 const mobile_sidenav = document.getElementById("mobile-sidenav");
 const buttons = document.getElementById("menu-button");
 
-const terminal = document.querySelector("#toplevel-terminal");
+var terminal = document.querySelector("#toplevel-terminal");
 
 var MOBILE = false;
 
@@ -220,6 +220,19 @@ let current_bloc_selected = function (instance) {
     return { start: undefined, end: undefined };
 }
 
+let restart_toplevel = function () {
+    // Get the worker to stop
+    terminal.xworker.terminate();
+    // Delete the node
+    let parent = terminal.parentNode;
+    terminal.parentNode.removeChild(terminal.parentNode.querySelector("py-terminal"))
+    let interpreter_code = parent.innerHTML;
+    parent.innerHTML = "";
+    // Inject the exact same node
+    parent.innerHTML = interpreter_code;
+    // Restart the terminal
+    terminal = document.querySelector("#toplevel-terminal");
+}
 
 /**
  * Calculate the cursor of the code to highlight
