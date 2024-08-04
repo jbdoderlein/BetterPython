@@ -22,7 +22,7 @@ Without installing any software on your laptop or smartphone, use [this web-base
 
 ## How to use ?
 
-TODO : usage GIF
+![Usage(credit Marsupilami1)](https://github.com/user-attachments/assets/41ec16e9-9400-4f6f-a331-3bf77f32dd3b)
 
 The editor is made of 3 parts, as seen in this screenshot:
 - ** Navbar ** : this is where you can switch between multiple files. You can add, execute, save, load code in the editor and access to settings;;
